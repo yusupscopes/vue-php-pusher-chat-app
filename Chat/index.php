@@ -22,6 +22,7 @@ $pusher = new Pusher\Pusher(
 );
 
 if ($_GET['method'] == 'sendMessage') {
+    $data['id'] = $_POST['id'];
     $data['username'] = $_POST['username'];
     $data['message'] = $_POST['message'];
     $data['time'] = $_POST['time'];

@@ -35,7 +35,7 @@
         <input type="text" placeholder="ur name" v-model="username">
         <hr>
         <div class="chat-lists">
-            <div class="chat-message" v-for="chat in chats">
+            <div class="chat-message" v-for="chat in chats" v-bind:data-id="chat.id">
                 <div class="username"> {{ chat.username }}
                     <span class="time">{{ chat.time }}</span>
                 </div>

@@ -15,22 +15,35 @@ var vi = new Vue({
         url: 'http://localhost/pusher-chat/Chat/index.php',
         chats: [],
         username: '',
-        chatInput: ''
+        chatInput: '',
+        last_inserted_id: ''
     },
     methods: {
         sendMessage: function (e) {
             // console.log(e)
-            if (e.keyCode === 13 && !e.shitfKey) {
+            if (e.keyCode === 13 && !e.shiftKey) {
                 e.preventDefault()
 
                 if (this.chatInput == '' || this.chatInput.trim() == '') {
                     return
                 }
                 var date = new Date()
+                var tempChatInput = this.chatInput
+                var now = this.last_inserted_id = Date.now()
+
+                this.chatInput = ''
+
+                this.chats.push({
+                    id: now,
+                    username: this.username,
+                    message: tempChatInput,
+                    time: date.toLocaleString()
+                })
 
                 axios.post(this.url + '?method=sendMessage', {
+                    id: now,
                     username: this.username,
-                    message: this.chatInput,
+                    message: tempChatInput,
                     time: date.toLocaleString()
                 }).then(function (response) {
                     console.log(response)
@@ -41,6 +54,12 @@ var vi = new Vue({
 })
 
 channel.bind('chat-event', function (data) {
-    console.log('ini dari channel event ---');
-    console.log(data);
-})
+    if (data.username != null && data.id != vi.last_inserted_id) {
+        vi.chats.push({
+            id: data.id,
+            username: data.username,
+            message: data.message,
+            time: data.time,
+        });
+    }
+});
