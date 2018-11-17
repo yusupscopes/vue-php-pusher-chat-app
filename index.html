@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Chat App Pusher PHP Vuejs</title>
+    <script src="https://js.pusher.com/4.2/pusher.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <style>
+        body{
+            width: 80%;
+            margin: 10% auto;
+            font-family: sans-serif;
+        }
+        textarea{
+            width: 99%;
+            overflow: hidden;
+        }
+        .chat-message{
+            padding: 10px;
+        }
+        .username{
+            font-weight: 800;
+            padding-bottom: 5px;
+        }
+        .username, .time{
+            font-size: 0.8rem;
+        }
+        .message{
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-box" id="app">
+        <input type="text" placeholder="ur name">
+        <hr>
+        <div class="chat-lists">
+            <div class="chat-message">
+                <div class="username"> Yusup Maulana
+                    <span class="time">12/06/05</span>
+                </div>
+                <div class="message">Halo halo Pangandaran</div>
+            </div>
+            <div class="chat-message">
+                <div class="username"> Maulana Yusup
+                    <span class="time">11/09/08</span>
+                </div>
+                <div class="message">Halo juga Pangandaran</div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <textarea name="name" rows="10"></textarea>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
